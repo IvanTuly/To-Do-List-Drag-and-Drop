@@ -1,0 +1,229 @@
+@charset "UTF-8";
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*--------------------*/
+html, body, main {
+  min-height: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.menu {
+  margin: 0 0 30px 0;
+}
+.menu__square {
+  background-color: red;
+  min-width: 100%;
+  height: 40px;
+  font-family: AlternateGothic;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  color: white;
+  padding: 4px 0 0 0;
+}
+
+.footer {
+  margin: 0 auto;
+  padding: 0 0 10px 0;
+  color: gray;
+}
+.content {
+  flex: 1 1 auto;
+}
+
+.dayTasks__row {
+  margin: 10px;
+  display: flex;
+  align-items: stretch;
+  height: 85vh;
+  overflow-y: hidden;
+}
+.dayTasks__task {
+  flex: 0 0 14.285%;
+  padding: 0 10px 0;
+  border-left: 1px solid #eaeaea;
+}
+.dayTasks__task:last-child {
+  border-right: 1px solid #eaeaea;
+}
+.dayTasks__task-today {
+  color: red;
+}
+.dayTasks__weekday {
+  font-family: AlternateGothic;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3em;
+}
+.dayTasks__date {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 0 1.2em 0;
+}
+.dayTasks__data {
+  display: flex;
+  font-family: Inter;
+  border-bottom: 1px solid #eaeaea;
+  /* Параметры линии */
+}
+.dayTasks__content {
+  flex-grow: 1;
+}
+.dayTasks__actions {
+  display: flex;
+}
+.dayTasks__tasks {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+.dayTasks__emptyArea {
+  pointer-events: none;
+  display: block;
+  margin: 0 auto;
+  resize: none;
+  height: 100%;
+  width: 100%;
+  background-image: -webkit-linear-gradient(top, transparent, transparent 15.6px, #eaeaea 0);
+  -webkit-background-size: 100% 16.6px;
+  /* background-size: 100% 50px; */
+}
+
+.text {
+  text-overflow: ellipsis;
+}
+
+.task__date {
+  font-family: Inter;
+  font-weight: 300;
+  font-size: 1em;
+  text-align: center;
+}
+
+.task-title--done {
+  text-decoration: line-through;
+  color: rgb(150, 150, 150);
+}
+
+textarea {
+  pointer-events: none;
+  display: block;
+  margin: 0 auto;
+  resize: none;
+  height: 100%;
+  width: 100%;
+  background-image: -webkit-linear-gradient(top, transparent, transparent 15.6px, #eaeaea 0);
+  -webkit-background-size: 100% 16.6px;
+  /* background-size: 100% 50px; */
+}
+
+.button__delete {
+  background-color: #fff;
+  color: #d2d2d2;
+  font-size: 14px;
+}
+
+.button__delete:hover {
+  transition-duration: 0.2s;
+  color: darkred;
+}
+
+.button__done {
+  background-color: #fff;
+  color: #d2d2d2;
+  font-size: 14px;
+}
+
+.button__done:hover {
+  transition-duration: 0.2s;
+  color: darkgreen;
+}
+
+@font-face {
+  font-family: "AlternateGothic";
+  src: url("../fonts/alternate-gothic-no1-d.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200;
+}/*# sourceMappingURL=style.css.map */

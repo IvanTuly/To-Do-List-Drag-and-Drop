@@ -1,0 +1,211 @@
+
+@import "nullstyle.scss";
+
+html, body, main {
+    min-height: 100%;
+    height: 100%;
+}
+
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+
+	min-height: 100%;	
+}
+
+.menu {
+	margin: 0 0 30px 0;
+	&__square {
+		background-color: red;
+		min-width: 100%;
+		height: 40px;
+
+		font-family: AlternateGothic;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 2.5em;
+		color: white;
+
+		padding: 4px 0 0 0;
+	}
+}
+
+.footer {
+	margin: 0 auto;
+	padding: 0 0 10px 0;
+	color: gray;
+	&__row {
+	}
+
+	&__text {
+	}
+}
+
+.content {
+	flex: 1 1 auto;
+
+}
+
+.dayTasks {
+
+	&__row {
+		margin: 10px;
+		display: flex;
+		align-items: stretch;
+		height: 85vh;
+		overflow-y: hidden;
+	}
+
+	&__task {
+		flex: 0 0 14.285%;
+		padding: 0 10px 0;
+		border-left: 1px solid #eaeaea;
+	}
+	&__task:last-child {
+		border-right: 1px solid #eaeaea;
+	}
+
+	&__task-today {
+		color: red;
+	}
+
+	&__weekday {
+		font-family: AlternateGothic;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 3em;
+	}
+
+	&__date {
+		font-size: 12px;
+		text-align: center;
+		margin: 0 0 1.2em 0;
+	}
+
+	&__data {
+		display: flex;
+		font-family: Inter;
+		border-bottom: 1px solid #eaeaea;
+		/* Параметры линии */
+
+	}
+
+	&__content {
+		flex-grow: 1;
+	}
+
+	&__actions {
+		display: flex;
+	}
+
+	&__tasks {
+		display: flex;
+		flex-direction: column;
+		overflow: scroll;
+
+	}
+
+	&__emptyArea {
+		pointer-events: none;
+		display: block;
+		margin: 0 auto;
+		resize: none;
+		height: 100%;
+		width: 100%;
+
+		background-image:
+			-webkit-linear-gradient(top, transparent, transparent 15.6px, #eaeaea 0);
+
+		-webkit-background-size: 100% 16.6px;
+		/* background-size: 100% 50px; */
+	}
+
+}
+
+.container {}
+
+.text{
+	text-overflow: ellipsis;
+}
+
+.text:hover {
+
+  }
+
+.empty {}
+
+
+//поле с датой у каждого дня
+.task__date {
+	font-family: Inter;
+	font-weight: 300;
+	font-size: 1em;
+	text-align: center;
+}
+
+
+.task-title--done {
+	text-decoration: line-through;
+	color: rgb(150, 150, 150);
+}
+
+textarea {
+	pointer-events: none;
+	display: block;
+	margin: 0 auto;
+	resize: none;
+	height: 100%;
+	width: 100%;
+
+	background-image:
+		-webkit-linear-gradient(top, transparent, transparent 15.6px, #eaeaea 0);
+
+	-webkit-background-size: 100% 16.6px;
+	/* background-size: 100% 50px; */
+}
+
+.button__delete{
+	background-color: #fff;
+	color: #d2d2d2;
+	font-size: 14px;
+
+  }
+  
+  .button__delete:hover {
+	transition-duration: 0.2s;
+	color: darkred;
+  }
+
+  .button__done{
+	background-color: #fff;
+	color: #d2d2d2;
+	font-size: 14px;
+
+  }
+  
+  .button__done:hover {
+	transition-duration: 0.2s;
+	color: darkgreen;
+  }
+
+
+
+@font-face {
+	// название шрифта(чтобы не запутаться лучше указать название папки со шрифтом) 
+	font-family: "AlternateGothic";
+	// адрес шрифта и тип 
+	src: url("../fonts/alternate-gothic-no1-d.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	// название шрифта(чтобы не запутаться лучше указать название папки со шрифтом) 
+	font-family: "Inter";
+	// адрес шрифта и тип 
+	src: url("../fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 200;
+}
+  
