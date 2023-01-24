@@ -7,9 +7,10 @@
         <title>to do list</title>
 
         <link rel="stylesheet" href="css/style.css">
-        
-
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8 /">
+            <!-- Boxicons CSS -->
+        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     </head>
 
     <body>
@@ -18,13 +19,72 @@
       </header>
 
       <main>
+        <nav>
+          
+          <i class="bx bx-cog mainmenu-icon"></i>
+          <span class="menu-title">To do list Do-do-do</span>
+          <div class="login">
+            <form>
+              <button class="login__button" type="submit" formaction="firebase/index.html">Log In</button>
+            </form>
+            <button class="login__logOut empty">Log Out</button>
+          </div>
+          
+          <div class="sidebar">
+            <div class="logo">
+              <i class="bx bx-x openmenu-icon"></i>
+              <span class="logo-name">Settings</span>
+            </div>
+    
+            <div class="sidebar-content">
+              <ul class="lists">
+                <li class="list">
+                  <div class="colorChange">
+                    <div class="colorChange__Header">
+                      <i class='bx bxs-color-fill' ></i>
+                      <span class="link">Color Scheme</span>
+                    </div>
+                    <div class="colorChange__Buttons">
+                      <button class="colorButton colorButton__colorRed"></button>
+                      <button class="colorButton colorButton__colorBlack"></button>
+                      <button class="colorButton colorButton__colorGreen"></button>
+                      <button class="colorButton colorButton__colorBlue"></button>
+                      <button class="colorButton colorButton__colorYellow"></button>
+                      <button class="colorButton colorButton__colorPink"></button>
+                      <button class="colorButton colorButton__colorPurple"></button>
+                    </div>
+                  </div>                
+                </li>
+                <!-- <li class="list">
+                  <div class="sizeChange">
+                    <div class="sizeChange__header">
+                      <i class='bx bxs-chevrons-up'></i>
+                      <span class="link">Change Size</span>
+                    </div>
+                    <div class="sizeChange__slider">
+                      <input class="textSizeSlider" type="range" min="12" max="30" value="16">
+                    </div>
+                    <div class="sizeChange__example">Lorem ipsum</div>
+                  </div>    
+                </li> -->
+              </ul>
+    
+              <!-- <div class="bottom-cotent">
+                  <i class="bx bx-log-out icon"></i>
+              </div> -->
+            </div>
+          </div>
+        </nav>
 
+        <!-- New comment -->
       <div class="wrapper">
-        <div class="menu">
+        <!-- <div class="menu">
           <div class="menu__square">To do list Do-do-do</div>
-        </div>
+        </div> -->
         <!-- основная часть страницы -->
         <div class="content">
+
+          <button class="button_previousWeek button_changeweek">ᐸ</button>
           <!-- часть страницы, где будут контейнеры задач -->
           <div class="dayTasks">
             <!-- чтобы ограничить ширину контента на странице -->
@@ -35,6 +95,7 @@
               </div>
             </div>
           </div>
+          <button class="button_nextWeek button_changeweek">ᐳ</button>
         </div>
 
         <footer class="footer">
@@ -47,9 +108,16 @@
           </div>
         </footer>
       </div>
+  
+      <section class="overlay"></section>
       </main>
 
-      <script src="js/script.js" ></script>
+
+      <script type="module" src="js/settings.js" ></script>
+      <script type="module" src="js/script.js" ></script>
+ 
+
+
     </body>
 
   </html>

@@ -1,6 +1,7 @@
+import {saveToFirebase, logOut} from '../firebase/js/firebase.js';
+
 //массив с задачами и их статусом 
 let tasks = [];
-
 
 // //как только страница загрузится
 // window.addEventListener('load', () => {
@@ -11,6 +12,7 @@ const web_page = document.querySelector(".wrapper");
 const list_el = document.querySelector(".dayTasks__row");
 //получаем текущую дату, чтобы сделать рендер текущей недели
 const date = new Date();
+let renderWeekDay = new Date();
 
 if (localStorage.getItem('tasks')) {
     //парсим JSON и записываем в массив tasks
@@ -18,6 +20,7 @@ if (localStorage.getItem('tasks')) {
 }
 //проверяем массив на пустые задачи
 chekNullItemsInArray();
+
 
 //рендерим таблицу задач
 renderWeekTasks(date);
@@ -37,6 +40,7 @@ list_el.addEventListener('click', deleteTask);
 
 //отметка задачи как выполненной
 list_el.addEventListener('click', doneTask);
+
 
 // при клике в любом месте окна браузера вызываем функцию, которая удалит пустую строчку, если пользователь стер задачу
 window.addEventListener('click', deleteByClick)
@@ -70,7 +74,7 @@ function deleteByClick() {
 //функция добавления новой задачи в массив
 function addTask(newTaskValue, newTaskDate) {
 
-    newTaskID = Date.now()
+    var newTaskID = Date.now()
     //объект создаваемой задачи, хранит id, текст и статус, выполнена/не выполнена.
     const newTask = {
         //id по мс текущего времени
@@ -91,7 +95,7 @@ function addTask(newTaskValue, newTaskDate) {
 function editTask(event) {
     //получаем значение input, каждый раз, когда меняем данные
     const task = event.target;
-    taskValue = task.value;
+    var taskValue = task.value;
     const id = Number(task.id);
 
     //делаем проверку: задача новая или уже существует, у новых задач нет id
@@ -105,7 +109,7 @@ function editTask(event) {
         const dateValue = date.value;
 
         //вызываем функцию добавления новой задачи и получаем из нее id новой задачи
-        newTaskID = addTask(taskValue, dateValue);
+        const newTaskID = addTask(taskValue, dateValue);
         //устанавливаем id задачи, если она не была создана
         task.setAttribute("id", newTaskID);
         //устанавливаем значение в value
@@ -162,7 +166,7 @@ function deleteTaskErase(event) {
     const parentNode = event.target.closest('.dayTasks__data');
     //получаем значение input, каждый раз, когда меняем данные
     const task = event.target;
-    taskValue = task.value;
+    const taskValue = task.value;
     //ищем id
     const taskID = Number(task.id);
 
@@ -246,13 +250,14 @@ function doneTask(event) {
 //сохранение в localStorage
 function saveToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    saveToFirebase(tasks);
 }
 
 //функция рендерит кнопки у новой задачи
 function renderButtons(parent) {
     const taskHTML = `
         <div class="dayTasks__actions">
-        <button class="button__done" data-action="done">✓</button>
+        <button class="button__done" data-action="done">v</button>
         <button class="button__delete" data-action="delete">x</button>
       </div>`
     parent.insertAdjacentHTML('beforeend', taskHTML);
@@ -280,9 +285,11 @@ function createEmptyTask(parent) {
 }
 
 //функция для рендера 7 блоков с днями недели с пн до вс, на вход передаем дату - получаем 7 блоков - дней недели
-function renderWeekTasks(date) {
+function renderWeekTasks(functionDate) {
+    let date = functionDate;
+    list_el.innerHTML = '';
     //для проверки сеггодняшнего дня, чтобы добавить ему класс today
-    const todayDay = date;
+    const todayDay = new Date();
     const todayDate =`${todayDay.getDate()} ${getMonthItem(todayDay)} ${todayDay.getFullYear()}`;
     //получаем дату понедельника этой недели
     let dayWeek = getMondayDate(date);
@@ -304,7 +311,7 @@ function renderWeekTasks(date) {
         //вызываем функцию для рендера дня недели с задачами
         renderTask(dayTask, dateTask, today);
         //обновляем день на следующий день недели
-        newDay = dayWeek.getTime() + 86400000;
+        var newDay = dayWeek.getTime()+86400000;
         dayWeek.setTime(newDay);
     }
 }//END renderWeekTasks
@@ -329,7 +336,7 @@ function renderSumOfTasks(taskDate) {
                   />
                 </div>
                 <div class="dayTasks__actions">
-                  <button class="button__done" data-action="done">✓</button>
+                  <button class="button__done" data-action="done">v</button>
                   <button class="button__delete" data-action="delete">x</button>
                 </div>
               </div>
@@ -429,6 +436,7 @@ function getMonthItem(date) {
 
 //функция для выдова даты понедельника этой недели
 function getMondayDate(date) {
+    let newDate = new Date();
     //определяем текущий день
     const day = date.getDay();
     // создаем переменную для хранения мс
@@ -459,8 +467,8 @@ function getMondayDate(date) {
             date = null;
     }
     //возврашаем пн на этой неделе
-    date.setTime(dateMonday);
-    return date;
+    newDate.setTime(dateMonday);
+    return newDate;
 }//END getMondayDate
 
 function chekNullItemsInArray() {
@@ -472,9 +480,8 @@ function chekNullItemsInArray() {
     }
 };//END chekNullItemsInArray
 
-
-//функции для перетягивания задач
-function onDragStart(event) {
+//функции для перетягивания задач, запись window.name = function() - делает функцию глобальной - ее видно за перделами модуля
+window.onDragStart = function(event) {
     event
         .dataTransfer
         .setData('text/plain', event.target.id);
@@ -484,10 +491,10 @@ function onDragStart(event) {
     //   .style
     //   .border = '1px solid black';
 }
-function onDragOver(event) {
+window.onDragOver = function(event) {
     event.preventDefault();
 }
-function onDrop(event) {
+window.onDrop = function(event) {
 
     const id = event
         .dataTransfer
@@ -662,5 +669,97 @@ function saveTaskToEnd(parentNode, id) {
 
 }
 
+
+//функции стрелок переключение недель. RenderWeekTasks - глобальная переменная - хранит один день недели, которая рендерится
+document.querySelector(".button_previousWeek").addEventListener('click', () =>{
+    let newDay = renderWeekDay.getTime()-604800000;
+    let date = new Date();
+    date.setTime(newDay);
+    renderWeekDay = date;
+    renderWeekTasks(date)   
+})
+document.querySelector(".button_nextWeek").addEventListener('click', () =>{
+    let newDay = renderWeekDay.getTime()+604800000;
+    let date = new Date();
+    date.setTime(newDay);
+    renderWeekDay = date;
+    renderWeekTasks(date)   
+})
+
+
+//реализация фокусировки на пустое поле с задачей при клике на пустые задачи
+const wrapper = document.querySelector('.wrapper');
+wrapper.addEventListener('click', handleClick);
+function handleClick(e) {
+    console.log('click', e.target);
+      const emptyArea = e.target.querySelector(".dayTasks__emptyArea");
+      console.log(emptyArea)
+  
+      if (emptyArea != null){
+          const task = e.target.querySelector(".empty")
+          const taskField = task.querySelector(".text")
+          taskField.focus()
+          console.log(task)
+      }
+  }
+
+
+//проверяем авторизован ли пользователь
+//открываем бд
+var openRequest = indexedDB.open('firebaseLocalStorageDb',1)
+//если успешно
+openRequest.onsuccess = function(event){
+    //получаем что внутри
+    var db = event.target.result;
+    //посылаем get запрос через транзакцию - так работает .getAll-все содержимое 
+    const request = db.transaction('firebaseLocalStorage')
+    .objectStore('firebaseLocalStorage')
+    .getAll();
+
+    //если get запрос выполнет, то полуачам данные в переменную user
+    request.onsuccess = ()=> {
+    const user = request.result;
+    if (user.length !=0){
+        // console.log('Got user');
+        // console.log(user[0].value.email)
+        const userLogOut = document.querySelector(".login__logOut");
+        userLogOut.classList.remove("empty");
+        const logInButton = document.querySelector(".login__button");
+        logInButton.classList.add("empty")
+    };
+    };
+
+    //если get запрос не выполнен, то пользователь не авторизован
+    request.onerror = (err)=> {
+        console.error(`Error to get user: ${err}`)
+        const userEmail = document.querySelector(".login__user");
+        userEmail.innerText = "";
+        userEmail.classList.add("empty");
+        const logInButton = document.querySelector(".login__button");
+        logInButton.classList.remove("empty")
+
+    }
+};
+
+
+//реализация log out
+const logOutButton = document.querySelector(".login__logOut");
+logOutButton.addEventListener('click', logOutFunction);
+function logOutFunction(){
+    logOut();
+    const userLogOut = document.querySelector(".login__logOut");
+    userLogOut.classList.add("empty");
+    const logInButton = document.querySelector(".login__button");
+    logInButton.classList.remove("empty")
+
+}
+
+
+
 // });
+
+
+
+
+
 

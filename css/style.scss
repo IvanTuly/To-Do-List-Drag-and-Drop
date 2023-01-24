@@ -1,5 +1,12 @@
 
 @import "nullstyle.scss";
+// body::-webkit-scrollbar{
+// 	display: none;
+// }
+:root {
+	--main-color-scheme: red;
+	--main-text-scheme: white;
+  }
 
 html, body, main {
     min-height: 100%;
@@ -10,31 +17,67 @@ html, body, main {
 .wrapper {
 	display: flex;
 	flex-direction: column;
-
 	min-height: 100%;	
 }
 
 .menu {
+	padding: 0 15px;
 	margin: 0 0 30px 0;
+	display: flex;
+	background-color: var(--main-color-scheme);
+	min-width: 100%;
+	align-items: center;
+	justify-content: center;
+
 	&__square {
-		background-color: red;
-		min-width: 100%;
+		flex: 1 1 auto;
+
 		height: 40px;
 
 		font-family: AlternateGothic;
 		text-align: center;
 		text-transform: uppercase;
 		font-size: 2.5em;
-		color: white;
+		color: var(--main-text-scheme);
 
-		padding: 4px 0 0 0;
+		padding: 4px 0 0 50px;
+	}
+
+	&__login{
+		padding: 0 50px 0 0;
 	}
 }
 
+.login{
+	margin: 0 10px 0 0;
+	&__button{
+		background-color: var(--main-color-scheme);
+		color: var(--main-text-scheme);
+		padding: 5px;
+		border: 2px solid var(--main-text-scheme);
+		border-radius: 5px;
+	}
+
+	&__logOut{
+		background-color: var(--main-color-scheme);
+		color: var(--main-text-scheme);
+		padding: 5px;
+		border: 2px solid var(--main-text-scheme);
+		border-radius: 5px;
+	}
+}
+
+.empty{
+	display: none;
+}
+
 .footer {
+	min-width: 100%;
 	margin: 0 auto;
-	padding: 0 0 10px 0;
+	padding: 5px 0 10px 0;
 	color: gray;
+	background-color: rgb(240, 240, 240);
+	text-align: center;
 	&__row {
 	}
 
@@ -43,11 +86,23 @@ html, body, main {
 }
 
 .content {
-	flex: 1 1 auto;
-
+	margin: 0 10px;
+	display: flex;
+	flex-direction:row;
+	align-items:center;
 }
 
+.button_changeweek{
+	background-color: #fff;
+	font-size: 25px;
+	min-height:85vh;	
+	color: var(--main-color-scheme);
+}
+
+
 .dayTasks {
+	margin: 60px 0 0 0;
+	flex: 1 1 auto;
 
 	&__row {
 		margin: 10px;
@@ -55,10 +110,12 @@ html, body, main {
 		align-items: stretch;
 		height: 85vh;
 		overflow-y: hidden;
+		flex: 1 1 auto;
 	}
 
 	&__task {
-		flex: 0 0 14.285%;
+
+		flex: 0 1 14.285%;
 		padding: 0 10px 0;
 		border-left: 1px solid #eaeaea;
 	}
@@ -67,7 +124,7 @@ html, body, main {
 	}
 
 	&__task-today {
-		color: red;
+		color: var(--main-color-scheme);
 	}
 
 	&__weekday {
@@ -87,23 +144,30 @@ html, body, main {
 		display: flex;
 		font-family: Inter;
 		border-bottom: 1px solid #eaeaea;
+
+		height: 25px;
 		/* Параметры линии */
 
 	}
 
 	&__content {
+		display: flex;
+		align-items: center;
 		flex-grow: 1;
+	
 	}
 
 	&__actions {
 		display: flex;
+		align-items:center;
+		font-family: 'Varela Round', sans-serif;
+		
 	}
 
 	&__tasks {
 		display: flex;
 		flex-direction: column;
-		overflow: scroll;
-
+		overflow: hidden;
 	}
 
 	&__emptyArea {
@@ -123,17 +187,18 @@ html, body, main {
 
 }
 
+
 .container {}
 
 .text{
 	text-overflow: ellipsis;
+	font-size: 13px;
+	flex-grow: 1;
 }
 
 .text:hover {
 
   }
-
-.empty {}
 
 
 //поле с датой у каждого дня
@@ -143,7 +208,6 @@ html, body, main {
 	font-size: 1em;
 	text-align: center;
 }
-
 
 .task-title--done {
 	text-decoration: line-through;
@@ -159,17 +223,17 @@ textarea {
 	width: 100%;
 
 	background-image:
-		-webkit-linear-gradient(top, transparent, transparent 15.6px, #eaeaea 0);
+		-webkit-linear-gradient(top, transparent, transparent 24.5px, #eaeaea 0);
 
-	-webkit-background-size: 100% 16.6px;
+	-webkit-background-size: 100% 25px;
 	/* background-size: 100% 50px; */
 }
 
 .button__delete{
 	background-color: #fff;
 	color: #d2d2d2;
-	font-size: 14px;
-
+	font-size: 15px;
+	
   }
   
   .button__delete:hover {
@@ -178,9 +242,10 @@ textarea {
   }
 
   .button__done{
+	margin: 0 3px 0 0;
 	background-color: #fff;
 	color: #d2d2d2;
-	font-size: 14px;
+	font-size: 15px;
 
   }
   
@@ -188,6 +253,192 @@ textarea {
 	transition-duration: 0.2s;
 	color: darkgreen;
   }
+
+
+
+// меню  и настройки
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--main-color-scheme);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.mainmenu-icon {
+	margin: 0 10px;
+	color: var(--main-text-scheme);
+	font-size: 24px;
+	margin-right: 14px;
+	cursor: pointer;
+}
+
+.menu-title{
+	flex: 1 1 auto;
+	text-align: center;
+	color: var(--main-text-scheme);
+	font-family: AlternateGothic;
+	font-size: 2.5em;
+	text-transform: uppercase;
+	padding: 0 0 0 25px;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+.openmenu-icon{
+	margin: 0 10px;
+	color: #333;
+	font-size: 24px;
+	margin-right: 14px;
+	cursor: pointer;
+}
+
+.logo-name{
+	color: #333;
+	font-family: Inter;
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+
+nav .sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 260px;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+nav.open .sidebar {
+  left: 0;
+}
+.sidebar .sidebar-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 13px;
+  padding: 30px 0px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 1000vh;
+  width: 200%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
+nav.open ~ .overlay {
+  opacity: 1;
+  left: 260px;
+  pointer-events: auto;
+}
+
+nav .bottom-cotent{
+	display: flex;
+	align-items: center;
+}
+
+.list{
+	padding: 0 0 20px 0;
+	border-bottom: 1px solid #333;
+}
+.list:last-child{
+	padding: 10px 0 20px 0;
+}
+
+.colorChange{
+	display: flex;
+	flex-direction: column;
+	justify-content:flex-start;
+	&__Header{
+		color: #333;
+		font-size: 1.5em;
+		display: flex;
+		align-items: center;
+		font-family: Inter;
+		margin: 0 0 10px 0;
+	}
+	&__Buttons{
+		display: flex;
+		justify-content: space-evenly;
+		margin: 5px;
+
+	}
+}
+.colorButton{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+
+	&__colorRed{
+		background-color: red;
+	}
+
+	&__colorBlack{
+		background-color: black;
+	}
+	&__colorGreen{
+		background-color: green;
+	}
+
+	&__colorBlue{
+		background-color: blue;
+	}
+	&__colorYellow{
+		background-color: yellow;
+	}
+
+	&__colorPink{
+		background-color: pink;
+	}
+	&__colorPurple{
+		background-color: purple;
+	}
+}
+
+.sizeChange{
+	display: flex;
+	flex-direction: column;
+	justify-content:flex-start;
+
+	&__header{
+		color: #333;
+		font-size: 1.5em;
+		display: flex;
+		align-items: center;
+		font-family: Inter;
+		margin: 0 0 10px 0;
+
+	}
+	&__slider{
+		margin: 0 0 10px 0;
+	}
+	&__example{
+		color: #333;
+		font-family: Inter;
+		
+	}
+}
+
+
+
+
+
 
 
 
@@ -200,12 +451,100 @@ textarea {
 	font-weight: normal;
 }
 
-@font-face {
-	// название шрифта(чтобы не запутаться лучше указать название папки со шрифтом) 
-	font-family: "Inter";
-	// адрес шрифта и тип 
-	src: url("../fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
-	font-style: normal;
-	font-weight: 200;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+@media all and (max-width : 800px) {
+	html, body, main {
+		min-height: 100%;
+		height: 100%;
+	}
+
+	.content{
+		display: flex;
+		align-items:flex-start;
+	}
+
+	.container {}
+
+	.dayTasks {
+
+		&__row {
+			margin: 0;
+			flex-direction:column;
+			height: 100%;
+			overflow-y: auto;
+		}
+	
+		&__task {
+			display: flex;
+			flex-direction: column;
+			border-right: 1px solid #eaeaea;
+
+			min-height: 30vh;
+			
+			margin: 0 0 2em 0;
+		}
+
+		&__emptyArea {
+			flex: 1 1 auto;
+		}
+
+		&__date {
+			font-size: 14px;
+		}
+
+		&__data{
+			height: 30px;
+			padding: 0 10px 0 10px;
+		}
+
+		&__emptyArea {
+			pointer-events: none;
+			display: block;
+			margin: 0 auto;
+			resize: none;
+			height: 100%;
+			width: 100%;
+	
+			background-image:
+				-webkit-linear-gradient(top, transparent, transparent 29.5px, #eaeaea 0);
+	
+			-webkit-background-size: 100% 30px;
+			/* background-size: 100% 50px; */
+		}
+	}
+
+	.text{
+		font-size: 16px;
+		font-weight: 200;
+	}
+
+	textarea {
+		display: none;
+	}
+
+	.button__delete{
+		font-size: 20px;
+	}
+
+
+	.button__done{
+		font-size: 20px;
+		margin: 0 8px 0 0;
+	  }
+
+	.button_changeweek{
+		background-color: rgba(255, 255, 255, 0);
+		min-height: 1px;	
+		margin: 45px 0 0 0;
+		font-size: 25px;
+		text-align: center;
+		position: sticky;
+		top: 40px;
+		z-index: 0;
+
+	}
 }
-  

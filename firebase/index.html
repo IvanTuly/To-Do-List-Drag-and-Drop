@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+  <head>
+
+      <title>to do list</title>
+
+      <link rel="stylesheet" href="css/style.css">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="Content-type" content="text/html;charset=UTF-8 /">
+  </head>
+
+  <body>
+    <header>
+
+    </header>
+
+    <main>
+
+    <div class="wrapper">
+        <div class="header">
+            <form>
+                <button class="header__backToDoList" type="submit" formaction="../index.html">ᐸ</button>
+              </form>
+        </div>
+        <div class="content">
+            <div class="signUp signUp-unactive">
+                <div class="signUp__head">Start now</div>
+
+                <div class="signUp__errorMessage empty"></div>
+
+                <input class="signUp__email" type="text" value="" placeholder="Email">
+
+                <input class="signUp__name" type="text" value="" placeholder="Name">
+
+                <input class="signUp__password" type="text" value="" placeholder="Password">
+                    
+                
+                <button class="signUp__button">Sing Up</button>
+
+                <div class="signUp__logIn">
+                    <div class="signUp__logInText">Have an account?</div>
+                    <button class="signUp__logInButton">Log in</button>
+                </div>
+            </div>
+            <div class="logIn">
+                <div class="logIn__head">Log In</div>
+
+                <div class="logIn__errorMessage empty"></div>
+
+                <input class="logIn__email" type="text" value="" placeholder="Email">
+
+                <input class="logIn__password" type="text" value="" placeholder="Password">
+
+                <button class="logIn__button">Log In</button>
+
+                <div class="logIn__forgotPass">
+                    <button class="logIn__forgotPassButton">Forgot you password?</button>
+                </div>
+
+                <div class="logIn__signUp">
+                    <div class="logIn_SignUpText">Haven’t tried ToDo App yet?</div>
+                    <button class="logIn__SignUpButton">Try now</button>
+                </div>
+            </div>
+
+            <div class="loader"></div>
+        </div>
+    </div>
+    </main>
+
+    <script type="module" src="js/firebase.js"></script>
+
+    <script src="js/script.js" ></script>
+  </body>
+
+</html>

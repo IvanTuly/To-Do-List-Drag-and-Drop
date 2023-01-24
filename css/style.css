@@ -1,5 +1,9 @@
 @charset "UTF-8";
 /*Обнуление*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,500;0,600;1,500;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -72,6 +76,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------*/
+:root {
+  --main-color-scheme: red;
+  --main-text-scheme: white;
+}
+
 html, body, main {
   min-height: 100%;
   height: 100%;
@@ -84,38 +93,86 @@ html, body, main {
 }
 
 .menu {
+  padding: 0 15px;
   margin: 0 0 30px 0;
+  display: flex;
+  background-color: var(--main-color-scheme);
+  min-width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 .menu__square {
-  background-color: red;
-  min-width: 100%;
+  flex: 1 1 auto;
   height: 40px;
   font-family: AlternateGothic;
   text-align: center;
   text-transform: uppercase;
   font-size: 2.5em;
-  color: white;
-  padding: 4px 0 0 0;
+  color: var(--main-text-scheme);
+  padding: 4px 0 0 50px;
+}
+.menu__login {
+  padding: 0 50px 0 0;
+}
+
+.login {
+  margin: 0 10px 0 0;
+}
+.login__button {
+  background-color: var(--main-color-scheme);
+  color: var(--main-text-scheme);
+  padding: 5px;
+  border: 2px solid var(--main-text-scheme);
+  border-radius: 5px;
+}
+.login__logOut {
+  background-color: var(--main-color-scheme);
+  color: var(--main-text-scheme);
+  padding: 5px;
+  border: 2px solid var(--main-text-scheme);
+  border-radius: 5px;
+}
+
+.empty {
+  display: none;
 }
 
 .footer {
+  min-width: 100%;
   margin: 0 auto;
-  padding: 0 0 10px 0;
+  padding: 5px 0 10px 0;
   color: gray;
+  background-color: rgb(240, 240, 240);
+  text-align: center;
 }
 .content {
-  flex: 1 1 auto;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
+.button_changeweek {
+  background-color: #fff;
+  font-size: 25px;
+  min-height: 85vh;
+  color: var(--main-color-scheme);
+}
+
+.dayTasks {
+  margin: 60px 0 0 0;
+  flex: 1 1 auto;
+}
 .dayTasks__row {
   margin: 10px;
   display: flex;
   align-items: stretch;
   height: 85vh;
   overflow-y: hidden;
+  flex: 1 1 auto;
 }
 .dayTasks__task {
-  flex: 0 0 14.285%;
+  flex: 0 1 14.285%;
   padding: 0 10px 0;
   border-left: 1px solid #eaeaea;
 }
@@ -123,7 +180,7 @@ html, body, main {
   border-right: 1px solid #eaeaea;
 }
 .dayTasks__task-today {
-  color: red;
+  color: var(--main-color-scheme);
 }
 .dayTasks__weekday {
   font-family: AlternateGothic;
@@ -140,18 +197,23 @@ html, body, main {
   display: flex;
   font-family: Inter;
   border-bottom: 1px solid #eaeaea;
+  height: 25px;
   /* Параметры линии */
 }
 .dayTasks__content {
+  display: flex;
+  align-items: center;
   flex-grow: 1;
 }
 .dayTasks__actions {
   display: flex;
+  align-items: center;
+  font-family: "Varela Round", sans-serif;
 }
 .dayTasks__tasks {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: hidden;
 }
 .dayTasks__emptyArea {
   pointer-events: none;
@@ -167,6 +229,8 @@ html, body, main {
 
 .text {
   text-overflow: ellipsis;
+  font-size: 13px;
+  flex-grow: 1;
 }
 
 .task__date {
@@ -188,15 +252,15 @@ textarea {
   resize: none;
   height: 100%;
   width: 100%;
-  background-image: -webkit-linear-gradient(top, transparent, transparent 15.6px, #eaeaea 0);
-  -webkit-background-size: 100% 16.6px;
+  background-image: -webkit-linear-gradient(top, transparent, transparent 24.5px, #eaeaea 0);
+  -webkit-background-size: 100% 25px;
   /* background-size: 100% 50px; */
 }
 
 .button__delete {
   background-color: #fff;
   color: #d2d2d2;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .button__delete:hover {
@@ -205,14 +269,190 @@ textarea {
 }
 
 .button__done {
+  margin: 0 3px 0 0;
   background-color: #fff;
   color: #d2d2d2;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .button__done:hover {
   transition-duration: 0.2s;
   color: darkgreen;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--main-color-scheme);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.mainmenu-icon {
+  margin: 0 10px;
+  color: var(--main-text-scheme);
+  font-size: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+
+.menu-title {
+  flex: 1 1 auto;
+  text-align: center;
+  color: var(--main-text-scheme);
+  font-family: AlternateGothic;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  padding: 0 0 0 25px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.openmenu-icon {
+  margin: 0 10px;
+  color: #333;
+  font-size: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+
+.logo-name {
+  color: #333;
+  font-family: Inter;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+nav .sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 260px;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+nav.open .sidebar {
+  left: 0;
+}
+
+.sidebar .sidebar-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 13px;
+  padding: 30px 0px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 1000vh;
+  width: 200%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+nav.open ~ .overlay {
+  opacity: 1;
+  left: 260px;
+  pointer-events: auto;
+}
+
+nav .bottom-cotent {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #333;
+}
+
+.list:last-child {
+  padding: 10px 0 20px 0;
+}
+
+.colorChange {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.colorChange__Header {
+  color: #333;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  font-family: Inter;
+  margin: 0 0 10px 0;
+}
+.colorChange__Buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px;
+}
+
+.colorButton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.colorButton__colorRed {
+  background-color: red;
+}
+.colorButton__colorBlack {
+  background-color: black;
+}
+.colorButton__colorGreen {
+  background-color: green;
+}
+.colorButton__colorBlue {
+  background-color: blue;
+}
+.colorButton__colorYellow {
+  background-color: yellow;
+}
+.colorButton__colorPink {
+  background-color: pink;
+}
+.colorButton__colorPurple {
+  background-color: purple;
+}
+
+.sizeChange {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.sizeChange__header {
+  color: #333;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  font-family: Inter;
+  margin: 0 0 10px 0;
+}
+.sizeChange__slider {
+  margin: 0 0 10px 0;
+}
+.sizeChange__example {
+  color: #333;
+  font-family: Inter;
 }
 
 @font-face {
@@ -221,9 +461,72 @@ textarea {
   font-style: normal;
   font-weight: normal;
 }
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 200;
+@media all and (max-width: 800px) {
+  html, body, main {
+    min-height: 100%;
+    height: 100%;
+  }
+  .content {
+    display: flex;
+    align-items: flex-start;
+  }
+  .dayTasks__row {
+    margin: 0;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .dayTasks__task {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #eaeaea;
+    min-height: 30vh;
+    margin: 0 0 2em 0;
+  }
+  .dayTasks__emptyArea {
+    flex: 1 1 auto;
+  }
+  .dayTasks__date {
+    font-size: 14px;
+  }
+  .dayTasks__data {
+    height: 30px;
+    padding: 0 10px 0 10px;
+  }
+  .dayTasks__emptyArea {
+    pointer-events: none;
+    display: block;
+    margin: 0 auto;
+    resize: none;
+    height: 100%;
+    width: 100%;
+    background-image: -webkit-linear-gradient(top, transparent, transparent 29.5px, #eaeaea 0);
+    -webkit-background-size: 100% 30px;
+    /* background-size: 100% 50px; */
+  }
+  .text {
+    font-size: 16px;
+    font-weight: 200;
+  }
+  textarea {
+    display: none;
+  }
+  .button__delete {
+    font-size: 20px;
+  }
+  .button__done {
+    font-size: 20px;
+    margin: 0 8px 0 0;
+  }
+  .button_changeweek {
+    background-color: rgba(255, 255, 255, 0);
+    min-height: 1px;
+    margin: 45px 0 0 0;
+    font-size: 25px;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 40px;
+    z-index: 0;
+  }
 }/*# sourceMappingURL=style.css.map */
