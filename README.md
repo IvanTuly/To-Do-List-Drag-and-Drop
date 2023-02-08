@@ -8,10 +8,10 @@ This project is a to-do list app that was inspired by the popular website TeuxDe
 - Persistent data storage with Firebase
 
 ## Getting Started
--Clone the repository: git clone https://github.com/IvanTuly/To-Do-List-Drag-and-Drop
--Install dependencies: npm install or yarn install
--Run the development server: npm start or yarn start
--Open http://localhost:3000 in your browser to view the app
+1. Clone the repository: git clone https://github.com/IvanTuly/To-Do-List-Drag-and-Drop
+2. Install dependencies: npm install or yarn install
+3. Run the development server: npm start or yarn start
+4. Open http://localhost:3000 in your browser to view the app
 
 ## Built With
 - Vanilla JavaScript
